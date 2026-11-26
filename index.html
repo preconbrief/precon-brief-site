@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Precon Brief | One-page bid/no-bid brief from your spec book</title>
+<meta name="description" content="Upload an MEP spec book and get a one-page bid/no-bid brief: bonding and insurance requirements, liquidated damages, retainage, and scope gaps between trades, each with its spec page. Free during early access.">
+<style>
+  :root { --ink:#1a1f2b; --muted:#566074; --line:#dfe3ea; --accent:#1f4fd8; --bg:#f7f8fa; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color:var(--ink); background:var(--bg); line-height:1.55; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 48px 20px 40px; }
+  .brand { font-weight:700; letter-spacing:.2px; color:var(--accent); font-size:15px; margin-bottom:28px; }
+  h1 { font-size: clamp(28px, 5vw, 40px); line-height:1.15; margin:0 0 16px; }
+  p.sub { font-size:18px; color:var(--muted); margin:0 0 28px; }
+  ul.points { list-style:none; padding:0; margin:0 0 32px; display:grid; gap:10px; }
+  ul.points li { background:#fff; border:1px solid var(--line); border-radius:10px; padding:12px 16px; }
+  ul.points strong { display:block; font-size:15px; }
+  ul.points span { color:var(--muted); font-size:14px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px; }
+  .card h2 { margin:0 0 6px; font-size:20px; }
+  .note { color:var(--muted); font-size:14px; margin:0 0 14px; }
+  .fallback { margin-top:12px; font-size:14px; }
+  .fallback a { color:var(--accent); }
+  footer { margin-top:36px; color:var(--muted); font-size:13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">Precon Brief</div>
+
+  <h1>Decide faster whether a bid is worth your time.</h1>
+  <p class="sub">Upload a spec book and get a one-page bid/no-bid brief for MEP estimators, by email in about 10 minutes.</p>
+
+  <ul class="points">
+    <li><strong>Bonding and insurance requirements</strong><span>What the project asks for, so you can check it against your limits.</span></li>
+    <li><strong>Liquidated damages and retainage</strong><span>The terms that change the risk, with the spec page for each.</span></li>
+    <li><strong>Scope gaps between trades</strong><span>Items that could fall between your scope and another trade's.</span></li>
+  </ul>
+
+  <div class="card">
+    <h2>Get your brief</h2>
+    <p class="note">Free during early access: first 3 briefs per person. Public bid documents only. Specs are reviewed, drawings are not.</p>
+
+    <iframe data-tally-src="https://tally.so/embed/peyGMZ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+            loading="lazy" width="100%" height="560" frameborder="0" marginheight="0" marginwidth="0"
+            title="Upload a spec for your bid/no-bid brief"></iframe>
+
+    <p class="fallback">Form not loading? <a href="https://tally.so/r/peyGMZ">Open it in a new page</a>.</p>
+  </div>
+
+  <footer>Precon Brief, built by Stephen. Early access.</footer>
+</div>
+
+<script>
+var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e){e.src=e.dataset.tallySrc})};
+if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w;s.onload=v;s.onerror=v;d.body.appendChild(s);}
+</script>
+</body>
+</html>
