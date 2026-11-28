@@ -3,58 +3,457 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Precon Brief | One-page bid/no-bid brief from your spec book</title>
-<meta name="description" content="Upload an MEP spec book and get a one-page bid/no-bid brief: bonding and insurance requirements, liquidated damages, retainage, and scope gaps between trades, each with its spec page. Free during early access.">
+<title>Precon Brief | One-page bid/no-bid briefs for MEP estimators</title>
+<meta name="description" content="Send a spec book, get a one-page bid/no-bid brief for your trade: bonding and insurance requirements, liquidated damages, retainage and scope gaps, each with its spec page. Free during testing.">
+<meta name="theme-color" content="#0B1626">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='11' fill='%2312263F'/%3E%3Cpath d='M14 8h14.5L37 16.5V38a2.5 2.5 0 0 1-2.5 2.5h-20A2.5 2.5 0 0 1 12 38V10.5A2.5 2.5 0 0 1 14 8z' fill='%23fff'/%3E%3Ccircle cx='33.5' cy='34.5' r='9' fill='%23F2A71B' stroke='%2312263F' stroke-width='3'/%3E%3Cpath d='M29.6 34.7l3 3 5.2-5.6' fill='none' stroke='%2312263F' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Precon Brief | One-page bid/no-bid briefs for MEP estimators">
+<meta property="og:description" content="Decide whether a bid is worth your time before you read the whole spec book. Free during testing.">
+<meta property="og:url" content="https://preconbrief.com/">
+<meta property="og:image" content="https://preconbrief.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
 <style>
-  :root { --ink:#1a1f2b; --muted:#566074; --line:#dfe3ea; --accent:#1f4fd8; --bg:#f7f8fa; }
-  * { box-sizing: border-box; }
-  body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color:var(--ink); background:var(--bg); line-height:1.55; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 48px 20px 40px; }
-  .brand { font-weight:700; letter-spacing:.2px; color:var(--accent); font-size:15px; margin-bottom:28px; }
-  h1 { font-size: clamp(28px, 5vw, 40px); line-height:1.15; margin:0 0 16px; }
-  p.sub { font-size:18px; color:var(--muted); margin:0 0 28px; }
-  ul.points { list-style:none; padding:0; margin:0 0 32px; display:grid; gap:10px; }
-  ul.points li { background:#fff; border:1px solid var(--line); border-radius:10px; padding:12px 16px; }
-  ul.points strong { display:block; font-size:15px; }
-  ul.points span { color:var(--muted); font-size:14px; }
-  .card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px; }
-  .card h2 { margin:0 0 6px; font-size:20px; }
-  .note { color:var(--muted); font-size:14px; margin:0 0 14px; }
-  .fallback { margin-top:12px; font-size:14px; }
-  .fallback a { color:var(--accent); }
-  footer { margin-top:36px; color:var(--muted); font-size:13px; }
+:root{
+  --ink:#0B1626; --navy:#12263F; --navy-2:#1B3556; --text:#26374D; --muted:#5E6E83;
+  --line:#DCE3EC; --bg:#F5F7FA; --white:#fff; --amber:#F2A71B; --amber-d:#D9900A;
+  --green:#1F7A4D; --red:#B3382C; --mark-bg:#12263F;
+  --r:14px; --shadow:0 1px 2px rgba(11,22,38,.06),0 12px 32px rgba(11,22,38,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:var(--white);line-height:1.6;font-size:17px}
+img,svg{max-width:100%}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--amber);color:var(--ink);padding:8px 14px;border-radius:8px;z-index:20;font-weight:600}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:6px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 16px/1 inherit;font-family:inherit;padding:15px 24px;border-radius:10px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background .15s,border-color .15s,transform .15s}
+.btn-primary{background:var(--amber);color:var(--ink)}
+.btn-primary:hover{background:#FFB92E}
+.btn-ghost{border-color:rgba(255,255,255,.28);color:#fff}
+.btn-ghost:hover{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.06)}
+.btn-sm{padding:10px 16px;font-size:15px;border-radius:8px}
+
+/* logo */
+.brand{display:inline-flex;align-items:center;gap:11px;text-decoration:none;color:inherit}
+.brand svg{width:38px;height:38px;flex:none}
+.brand .word{font-size:20px;letter-spacing:-.01em;font-weight:700;line-height:1}
+.brand .word span{font-weight:400;opacity:.78}
+
+/* hero */
+.hero{--mark-bg:#223F66;background:
+  linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/48px 48px,
+  linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/48px 48px,
+  radial-gradient(900px 420px at 85% 0%,#1B3556 0%,transparent 70%),
+  var(--ink);color:#fff;position:relative;overflow:hidden}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.nav ul{display:flex;align-items:center;gap:30px;list-style:none;margin:0;padding:0}
+.nav a.link{text-decoration:none;font-size:15px;color:rgba(255,255,255,.78)}
+.nav a.link:hover{color:#fff}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:56px 0 88px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--amber);margin:0 0 18px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--amber)}
+h1{font-size:clamp(32px,4.6vw,50px);line-height:1.08;letter-spacing:-.028em;margin:0 0 22px;font-weight:750}
+.lead{font-size:19px;line-height:1.55;color:rgba(255,255,255,.82);margin:0 0 32px;max-width:34em}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+.proof{display:flex;flex-wrap:wrap;gap:10px 26px;list-style:none;margin:0;padding:0;font-size:14.5px;color:rgba(255,255,255,.72)}
+.proof li{display:flex;align-items:center;gap:8px}
+.proof svg{width:16px;height:16px;flex:none;stroke:var(--amber)}
+
+/* mini brief card in hero */
+.mini{background:#fff;color:var(--text);border-radius:var(--r);box-shadow:0 30px 70px rgba(0,0,0,.45);overflow:hidden}
+.mini-top{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:#EEF2F7;border-bottom:1px solid var(--line);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.mini-body{padding:20px 22px 22px}
+.mini h3{font-size:16px;line-height:1.3;margin:0 0 4px;color:var(--ink)}
+.mini .where{font-size:13.5px;color:var(--muted);margin:0 0 16px}
+.verdict{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;font-weight:700;font-size:14px}
+.verdict.amber{background:#FDF0D5;color:#7A4B00}
+.verdict i{width:9px;height:9px;border-radius:50%;background:var(--amber-d);display:inline-block}
+.mini .fit{font-size:14.5px;margin:12px 0 14px}
+.rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.rows li{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.4}
+.tag{flex:none;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:6px;margin-top:1px;min-width:78px;text-align:center}
+.tag.high{background:#F9E1DE;color:var(--red)}
+.tag.med{background:#FDF0D5;color:#7A4B00}
+.tag.amb{background:#E4ECF8;color:#26508F}
+.tag.nf{background:#EEF1F5;color:var(--muted)}
+.cite{display:inline-block;font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--muted);background:#F0F3F7;border:1px solid var(--line);padding:3px 6px;border-radius:5px;white-space:nowrap;margin:2px 0 2px 4px;vertical-align:1px}
+.rows li>span:last-child{line-height:1.7}
+
+/* sections */
+section{padding:88px 0}
+.alt{background:var(--bg)}
+.kicker{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--amber-d);margin:0 0 12px}
+h2{font-size:clamp(28px,3.6vw,38px);line-height:1.15;letter-spacing:-.022em;margin:0 0 16px;color:var(--ink);font-weight:750}
+.sub{font-size:18px;color:var(--muted);max-width:40em;margin:0 0 48px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.card .ic{width:42px;height:42px;border-radius:10px;background:var(--navy);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.card .ic svg{width:22px;height:22px;stroke:var(--amber);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.card h3{margin:0 0 8px;font-size:18px;color:var(--ink);letter-spacing:-.01em}
+.card p{margin:0;font-size:15.5px;color:var(--muted);line-height:1.55}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
+.step{position:relative;padding-top:58px}
+.step::before{counter-increment:s;content:counter(s);position:absolute;top:0;left:0;width:42px;height:42px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:17px}
+.step::after{content:"";position:absolute;top:21px;left:56px;right:-14px;height:2px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 12px)}
+.step:last-child::after{display:none}
+.step h3{margin:0 0 8px;font-size:19px;color:var(--ink)}
+.step p{margin:0;color:var(--muted);font-size:16px}
+
+/* full sample */
+.paper{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.paper-top{display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:space-between;align-items:center;padding:14px 26px;background:var(--navy);color:#fff;font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.paper-top span:last-child{color:rgba(255,255,255,.7);text-transform:none;letter-spacing:0;font-weight:500;font-size:13.5px}
+.paper-body{padding:30px 34px 34px}
+.paper h3{margin:0 0 4px;font-size:21px;color:var(--ink);letter-spacing:-.01em}
+.paper .meta{margin:0 0 20px;color:var(--muted);font-size:14.5px}
+.banner{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:flex-start;padding:18px 20px;border-radius:12px;background:#FFF8E8;border:1px solid #F4DFB0;margin-bottom:26px}
+.banner ul{margin:0;padding-left:20px;font-size:15.5px;flex:1 1 320px}
+.banner li+li{margin-top:4px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:6px 44px}
+.blk{padding:14px 0}
+.blk h4{margin:0 0 10px;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.blk p{margin:0 0 8px;font-size:15.5px}
+.blk .rows li{padding:9px 0;font-size:15px}
+.blk .rows{border-top:0}
+.blk ul.plain{margin:0;padding-left:20px;font-size:15.5px}
+.blk ul.plain li{margin-bottom:5px}
+.note{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+.caption{margin:18px 0 0;font-size:14.5px;color:var(--muted)}
+
+/* get form */
+.get{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.get ul{padding-left:0;list-style:none;margin:22px 0 0}
+.get li{display:flex;gap:12px;margin-bottom:14px;font-size:16px}
+.get li svg{width:20px;height:20px;flex:none;margin-top:3px;stroke:var(--green);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.formcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:22px 24px;min-height:420px}
+.fallback{font-size:14px;color:var(--muted);margin:14px 0 0}
+
+/* faq */
+.faq{max-width:780px}
+details{border-bottom:1px solid var(--line);padding:4px 0}
+summary{cursor:pointer;list-style:none;padding:18px 36px 18px 0;font-weight:650;color:var(--ink);font-size:17.5px;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:24px;font-weight:400;color:var(--muted)}
+details[open] summary::after{content:"\2212"}
+details p{margin:0 0 20px;color:var(--muted);font-size:16.5px;max-width:42em}
+
+/* about */
+.about{display:flex;gap:22px;align-items:flex-start;padding:28px 30px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);max-width:780px;margin-top:44px}
+.about .mono{flex:none;width:52px;height:52px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px}
+.about p{margin:0;font-size:16.5px}
+.about strong{color:var(--ink)}
+
+/* footer */
+footer{background:var(--ink);--mark-bg:#223F66;color:rgba(255,255,255,.72);padding:56px 0 36px;font-size:14.5px}
+.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px}
+footer .brand{color:#fff;margin-bottom:14px}
+footer h5{margin:0 0 12px;color:#fff;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+footer p{margin:0 0 8px}
+footer a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25)}
+footer a.brand{border-bottom:0}
+footer a:hover{color:#fff;border-color:#fff}
+.legal{margin-top:40px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);font-size:13px;color:rgba(255,255,255,.55)}
+
+@media (max-width:920px){
+  .hero-grid{grid-template-columns:1fr;gap:44px;padding:36px 0 64px}
+  .cards{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr;gap:34px}
+  .step::after{display:none}
+  .get{grid-template-columns:1fr;gap:32px}
+  .cols{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr 1fr}
+  .nav ul li.hide-s{display:none}
+}
+@media (max-width:620px){
+  body{font-size:16px}
+  section{padding:64px 0}
+  .wrap{padding:0 18px}
+  .cards{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr}
+  .paper-body{padding:22px 20px 26px}
+  .lead{font-size:17.5px}
+  .btn{width:100%}
+  .nav .btn{width:auto}
+  .tag{min-width:70px}
+  .about{flex-direction:column;padding:22px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="brand">Precon Brief</div>
+<a class="skip" href="#get">Skip to the form</a>
 
-  <h1>Decide faster whether a bid is worth your time.</h1>
-  <p class="sub">Upload a spec book and get a one-page bid/no-bid brief for MEP estimators, by email in about 10 minutes.</p>
+<header class="hero">
+  <div class="wrap">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="/" aria-label="Precon Brief home">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <rect width="48" height="48" rx="11" fill="var(--mark-bg)" stroke="rgba(255,255,255,.14)"/>
+          <path d="M14 8h14.5L37 16.5V38a2.5 2.5 0 0 1-2.5 2.5h-20A2.5 2.5 0 0 1 12 38V10.5A2.5 2.5 0 0 1 14 8z" fill="#fff"/>
+          <path d="M28.5 8v6.2a2.3 2.3 0 0 0 2.3 2.3H37z" fill="#C5D0DD"/>
+          <rect x="16.5" y="20" width="13" height="2.4" rx="1.2" fill="#12263F"/>
+          <rect x="16.5" y="25.4" width="9" height="2.4" rx="1.2" fill="#9AA9BB"/>
+          <circle cx="33.5" cy="34.5" r="9" fill="#F2A71B" stroke="var(--mark-bg)" stroke-width="3"/>
+          <path d="M29.6 34.7l3 3 5.2-5.6" fill="none" stroke="#12263F" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="word">Precon <span>Brief</span></span>
+      </a>
+      <ul>
+        <li class="hide-s"><a class="link" href="#inside">What's inside</a></li>
+        <li class="hide-s"><a class="link" href="#sample">Sample brief</a></li>
+        <li class="hide-s"><a class="link" href="#faq">FAQ</a></li>
+        <li><a class="btn btn-primary btn-sm" href="#get">Get a free brief</a></li>
+      </ul>
+    </nav>
 
-  <ul class="points">
-    <li><strong>Bonding and insurance requirements</strong><span>What the project asks for, so you can check it against your limits.</span></li>
-    <li><strong>Liquidated damages and retainage</strong><span>The terms that change the risk, with the spec page for each.</span></li>
-    <li><strong>Scope gaps between trades</strong><span>Items that could fall between your scope and another trade's.</span></li>
-  </ul>
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">For MEP subcontractor estimators</p>
+        <h1>Decide whether a bid is worth your time before you read the spec book.</h1>
+        <p class="lead">Send a spec. Get a one-page bid/no-bid brief for your trade: bonding and insurance requirements, liquidated damages, retainage, and scope gaps between trades, each with its spec page.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#get">Get your free brief</a>
+          <a class="btn btn-ghost" href="#sample">See a sample brief</a>
+        </div>
+        <ul class="proof">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Every finding cites its spec page</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Says &ldquo;Not found in spec&rdquo; instead of guessing</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Free during testing</li>
+        </ul>
+      </div>
 
-  <div class="card">
-    <h2>Get your brief</h2>
-    <p class="note">Free during early access: first 3 briefs per person. Public bid documents only. Specs are reviewed, drawings are not.</p>
-
-    <iframe data-tally-src="https://tally.so/embed/peyGMZ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-            loading="lazy" width="100%" height="560" frameborder="0" marginheight="0" marginwidth="0"
-            title="Upload a spec for your bid/no-bid brief"></iframe>
-
-    <p class="fallback">Form not loading? <a href="https://tally.so/r/peyGMZ">Open it in a new page</a>.</p>
+      <aside class="mini" aria-label="Excerpt of a sample brief">
+        <div class="mini-top"><span>Bid/No-Bid Brief</span><span>Sample</span></div>
+        <div class="mini-body">
+          <h3>Supply Processing and Distribution (SPD) Renovation</h3>
+          <p class="where">James J. Peters VAMC, Bronx, NY &middot; Mechanical/HVAC</p>
+          <span class="verdict amber"><i></i>Go with conditions</span>
+          <p class="fit">Trade fit: <strong>major</strong>. Division 23 is 197 of 233 pages.</p>
+          <ul class="rows">
+            <li><span class="tag high">High</span><span>Steam tie-ins only 8 pm&ndash;5 am, off-season <span class="cite">23 05 11, p. 44</span></span></li>
+            <li><span class="tag amb">Ambiguous</span><span>Who furnishes VFDs and starters <span class="cite">23 05 11, p. 47</span></span></li>
+            <li><span class="tag med">Hidden cost</span><span>Seismic restraint, 100% horizontal <span class="cite">23 05 41, p. 65</span></span></li>
+            <li><span class="tag nf">Not found</span><span>Liquidated damages, retainage, bonding</span></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
   </div>
+</header>
 
-  <footer>Precon Brief, built by Stephen. Early access.</footer>
-</div>
+<main id="main">
+<section id="inside">
+  <div class="wrap">
+    <p class="kicker">What's inside</p>
+    <h2>One page that answers &ldquo;should we bid this?&rdquo;</h2>
+    <p class="sub">The brief reads the specification for your trade and your company profile, then lays out what matters before you commit estimating hours.</p>
+    <div class="cards">
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.2 7.8 8 9 4.8-1.2 8-4.5 8-9V6l-8-3z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Verdict and reasons</h3><p>Go, Go with conditions, or No-go signal, with the three reasons behind it, so you can see the logic and disagree with it.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div><h3>Eligibility</h3><p>Bonding, insurance, licensing, prequalification, prevailing wage and domestic content, checked against your company profile.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v5M12 18h.01"/></svg></div><h3>Commercial risk</h3><p>Liquidated damages, retainage, payment terms and schedule constraints that cost money, ranked by severity.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg></div><h3>Scope gaps</h3><p>Items that fall between trades, such as VFDs, starters and disconnects, flagged as yours, by others, or ambiguous.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M16.5 7.5C16.5 5.6 14.5 5 12 5S7.5 6 7.5 8.2c0 4.3 9 2.2 9 7 0 2.2-2 3.3-4.5 3.3s-4.5-.7-4.5-2.6"/></svg></div><h3>Hidden costs</h3><p>Required items that rarely show on the bid form: test and balance, commissioning, seismic bracing, training and warranties.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12"/><path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg></div><h3>Before bid day</h3><p>Forms, alternates, missing documents, and the questions to send in before the deadline.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="how">
+  <div class="wrap">
+    <p class="kicker">How it works</p>
+    <h2>From spec to brief in three steps</h2>
+    <p class="sub">No account, no software to install.</p>
+    <div class="steps">
+      <div class="step"><h3>Send the spec</h3><p>Pick your trade and state, add your bonding and insurance limits if you like, and upload the PDF.</p></div>
+      <div class="step"><h3>Get the brief by email</h3><p>The one-page brief lands in your inbox, usually within minutes.</p></div>
+      <div class="step"><h3>Check it against the spec</h3><p>Every finding names its section and page, so you can verify it in seconds and decide.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="sample">
+  <div class="wrap">
+    <p class="kicker">Sample brief</p>
+    <h2>A real brief, from a public spec</h2>
+    <p class="sub">Generated from a public VA specification (Division 23, 233 pages) for a Mechanical/HVAC subcontractor. This PDF was scope-only, so the brief says so rather than inventing bid terms.</p>
+
+    <article class="paper" aria-label="Sample bid/no-bid brief">
+      <div class="paper-top"><span>Bid/No-Bid Brief</span><span>Based on specifications only</span></div>
+      <div class="paper-body">
+        <h3>Supply Processing and Distribution (SPD) Renovation</h3>
+        <p class="meta">James J. Peters VAMC, Bronx, NY &middot; Project 526-10-150A &middot; Bid date and time: not found in spec</p>
+
+        <div class="banner">
+          <div><span class="verdict amber"><i></i>Go with conditions</span><p style="margin:10px 0 0;font-size:15.5px">Trade fit: <strong>major</strong>. Division 23 is 197 of 233 pages.</p></div>
+          <ul>
+            <li>Six of 14 scope gaps are ambiguous.</li>
+            <li>High risk: night-only steam tie-ins; no damages, retainage or bonding in PDF.</li>
+            <li>Bid date and eligibility cannot be confirmed.</li>
+          </ul>
+        </div>
+
+        <div class="cols">
+          <div>
+            <div class="blk">
+              <h4>Eligibility</h4>
+              <p>Bonding, insurance, licensing, prequalification, prevailing wage and domestic content: <strong>not found in spec</strong>.</p>
+            </div>
+            <div class="blk">
+              <h4>Commercial risk</h4>
+              <ul class="rows">
+                <li><span class="tag high">High</span><span>Steam/condensate tie-ins only 8 pm&ndash;5 am, off-season <span class="cite">23 05 11, p. 44</span></span></li>
+                <li><span class="tag med">Medium</span><span>Outage requests 48 h; major outages 15 days <span class="cite">01 00 00, p. 13</span></span></li>
+                <li><span class="tag med">Medium</span><span>Phasing per drawings; 2 weeks' notice per area <span class="cite">01 00 00, p. 12</span></span></li>
+                <li><span class="tag med">Medium</span><span>Controls warranty per FAR 52.246-21; 2 h remote response <span class="cite">23 09 23, p. 122</span></span></li>
+                <li><span class="tag med">Medium</span><span>PE rigging plan; structural reinforcement at contractor cost <span class="cite">23 05 11, p. 58</span></span></li>
+              </ul>
+            </div>
+            <div class="blk">
+              <h4>Your scope</h4>
+              <p>Division 23, 12 sections: common HVAC, noise/seismic, TAB, insulation, commissioning, DDC, hydronic and steam piping, ducts, fans, terminals, outlets, curbs. Absent: 23 05 12, 23 25 00, 23 73 00.</p>
+            </div>
+          </div>
+
+          <div>
+            <div class="blk">
+              <h4>Scope-gap watchlist</h4>
+              <ul class="rows">
+                <li><span class="tag amb">Ambiguous</span><span>VFDs, starters <span class="cite">23 05 11, p. 47</span></span></li>
+                <li><span class="tag amb">Ambiguous</span><span>Disconnects <span class="cite">23 34 00, p. 218</span></span></li>
+                <li><span class="tag amb">Ambiguous</span><span>Controls vs integrator training <span class="cite">23 09 23, p. 112</span></span></li>
+                <li><span class="tag amb">Ambiguous</span><span>Roof curb heights <span class="cite">23 05 11, p. 53</span></span></li>
+                <li><span class="tag amb">Ambiguous</span><span>Cutting, patching <span class="cite">01 00 00, p. 21</span></span></li>
+                <li><span class="tag amb">Ambiguous</span><span>Permits, fees <span class="cite">23 09 23, p. 109</span></span></li>
+                <li><span class="tag nf">Yours</span><span>Control wiring; firestopping; pads; duct access doors; condensate drains</span></li>
+              </ul>
+            </div>
+            <div class="blk">
+              <h4>Hidden costs</h4>
+              <ul class="plain">
+                <li>After-hours tie-ins <span class="cite">23 05 11, p. 44</span></li>
+                <li>Seismic restraint, 100% horizontal <span class="cite">23 05 41, p. 65</span></li>
+                <li>Commissioning support <span class="cite">23 08 00, p. 107</span></li>
+                <li>DDC training, 16 + 8 hours <span class="cite">23 09 23, p. 125</span></li>
+                <li>Controls warranty, 2 h remote <span class="cite">23 09 23, p. 121</span></li>
+                <li>Five-year controls spares <span class="cite">23 09 23, p. 119</span></li>
+              </ul>
+            </div>
+            <div class="blk">
+              <h4>Before bid day</h4>
+              <p>Forms, alternates, unit prices, allowances: not found in spec. Missing: Division 00, 01 91 00, drawings.</p>
+              <ul class="plain">
+                <li>Who furnishes VFDs, starters, disconnects: Div 23 or 26?</li>
+                <li>Who trains the VA on DDC: controls sub or integrator?</li>
+                <li>Which roof curb height governs?</li>
+                <li>Who does cutting and patching?</li>
+                <li>Who pays mechanical permits and fees?</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <p class="note">Based on specifications only. Drawings and schedules were not reviewed. Verify every item against the cited section before relying on it.</p>
+      </div>
+    </article>
+    <p class="caption">Formatting adjusted for the web; the six empty eligibility rows are shown as one line. The briefs you receive arrive as email.</p>
+  </div>
+</section>
+
+<section class="alt" id="get">
+  <div class="wrap get">
+    <div>
+      <p class="kicker">Get a brief</p>
+      <h2>Try it on a bid you're deciding on this week.</h2>
+      <ul>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Free while I test it with estimators. Your first 3 briefs cost nothing.</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Upload a PDF of the specification. Include the front end (Division 00 and 01) if you have it.</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Over about 250 pages, or too big to upload? Email it to <a href="mailto:stephen@getpreconbrief.com">stephen@getpreconbrief.com</a> and I'll trim it and run it for you.</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Please send only documents you're free to share, such as public bid documents.</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="formcard">
+        <iframe data-tally-src="https://tally.so/embed/peyGMZ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="420" frameborder="0" marginheight="0" marginwidth="0" title="Precon Brief request form"></iframe>
+      </div>
+      <p class="fallback">Form not loading? <a href="https://tally.so/r/peyGMZ">Open it in its own page</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <p class="kicker">Questions</p>
+    <h2>Straight answers</h2>
+    <div class="faq" style="margin-top:28px">
+      <details><summary>What does it cost?</summary><p>It's free while I test it with estimators, and your first 3 briefs cost nothing. If there is pricing later, you'll hear about it before it applies.</p></details>
+      <details><summary>How accurate is it?</summary><p>Each finding cites the spec section and page, so you can check it in seconds. When something isn't in the spec, the brief says &ldquo;Not found in spec&rdquo; instead of guessing. It is a fast first read, not a substitute for your judgment.</p></details>
+      <details><summary>What does it not do?</summary><p>It reads specifications only. Drawings, schedules and addenda that aren't in the PDF are not reviewed, and it doesn't price anything.</p></details>
+      <details><summary>What happens to my spec?</summary><p>Uploads go through Tally, the form provider, and are read by Claude, an AI model from Anthropic, to write your brief. I don't share your files with anyone else. Please send only documents you're free to share.</p></details>
+      <details><summary>Which trades does it cover?</summary><p>Mechanical/HVAC, Electrical, Plumbing and Fire protection, plus an &ldquo;Other&rdquo; option. The brief is written for the trade you pick.</p></details>
+      <details><summary>How do I stop getting emails from you?</summary><p>Reply &ldquo;no&rdquo; to any message and you won't hear from me again.</p></details>
+    </div>
+
+    <div class="about">
+      <div class="mono" aria-hidden="true">S</div>
+      <p><strong>Built by Stephen.</strong> Precon Brief is an independent project to help MEP estimators decide faster which bids deserve their time. If a brief misses something or gets something wrong, reply to it and tell me. That feedback decides what gets built next.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="/" aria-label="Precon Brief home">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <rect width="48" height="48" rx="11" fill="var(--mark-bg)" stroke="rgba(255,255,255,.14)"/>
+            <path d="M14 8h14.5L37 16.5V38a2.5 2.5 0 0 1-2.5 2.5h-20A2.5 2.5 0 0 1 12 38V10.5A2.5 2.5 0 0 1 14 8z" fill="#fff"/>
+            <path d="M28.5 8v6.2a2.3 2.3 0 0 0 2.3 2.3H37z" fill="#C5D0DD"/>
+            <rect x="16.5" y="20" width="13" height="2.4" rx="1.2" fill="#12263F"/>
+            <rect x="16.5" y="25.4" width="9" height="2.4" rx="1.2" fill="#9AA9BB"/>
+            <circle cx="33.5" cy="34.5" r="9" fill="#F2A71B" stroke="var(--mark-bg)" stroke-width="3"/>
+            <path d="M29.6 34.7l3 3 5.2-5.6" fill="none" stroke="#12263F" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="word">Precon <span>Brief</span></span>
+        </a>
+        <p>One-page bid/no-bid briefs for MEP subcontractor estimators.</p>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <p><a href="mailto:stephen@getpreconbrief.com">stephen@getpreconbrief.com</a></p>
+        <p>Precon Brief<br>1910 Pacific Ave, Suite 2000<br>Dallas, TX 75201, United States</p>
+      </div>
+      <div>
+        <h5>On this page</h5>
+        <p><a href="#inside">What's inside</a></p>
+        <p><a href="#sample">Sample brief</a></p>
+        <p><a href="#get">Get a free brief</a></p>
+        <p><a href="#faq">FAQ</a></p>
+      </div>
+    </div>
+    <p class="legal">Briefs are based on specifications only. Drawings and schedules are not reviewed. Verify every item against the cited section before relying on it. Received an email from me and want no more? Reply &ldquo;no&rdquo; and you're off the list. &copy; 2026 Precon Brief.</p>
+  </div>
+</footer>
 
 <script>
-var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e){e.src=e.dataset.tallySrc})};
-if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w;s.onload=v;s.onerror=v;d.body.appendChild(s);}
+(function(){
+  var d=document,s="https://tally.so/widgets/embed.js";
+  function load(){
+    if(typeof Tally!=="undefined"){Tally.loadEmbeds();return}
+    d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e){e.src=e.dataset.tallySrc});
+  }
+  if(typeof Tally!=="undefined"){load()}
+  else if(d.querySelector('script[src="'+s+'"]')==null){
+    var t=d.createElement("script");t.src=s;t.onload=load;t.onerror=load;d.body.appendChild(t);
+  }
+})();
 </script>
 </body>
 </html>
